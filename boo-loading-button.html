@@ -51,13 +51,6 @@
           }
         };
       }
-
-      constructor() {
-        super();
-        this.addEventListener('click', () => {
-          this.loading = true;
-        });
-      }
     }
 
     window.customElements.define(BooLoadingButton.is, BooLoadingButton);
