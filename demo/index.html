@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>boo-loading-button demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../boo-loading-button.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        boo-loading-button {
+          --boo-button: {
+            background-color: var(--google-green-500);
+            color: white;
+          }
+          --boo-disabled-button: {
+            background-color: white;
+          }
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic boo-loading-button demo</h3>
+      <demo-snippet>
+        <template>
+          <boo-loading-button 
+            id="test"
+            raised>点我看效果</boo-loading-button>
+        </template>
+      </demo-snippet>
+      <script>
+        var button = document.querySelector('#test');
+        button.addEventListener('click', () => {
+          setTimeout(() => {
+            button.loading = false;
+          }, 5000);
+        });
+      </script>
+    </div>
+  </body>
+</html>

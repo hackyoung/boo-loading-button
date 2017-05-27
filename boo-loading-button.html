@@ -1,0 +1,65 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="boo-loading-button">
+  <template>
+    <style>
+      paper-button {
+        @apply --boo-button;
+      }
+      paper-button[disabled] {
+        @apply --boo-disabled-button;
+      }
+      paper-spinner {
+        @apply(--boo-loading);
+      }
+    </style>
+    <paper-button raised=[[raised]] disabled=[[loading]]>
+      <template is="dom-if" if=[[loading]]>
+        <paper-spinner active></paper-spinner> 
+      </template>
+      <template is="dom-if" if=[[!loading]]>
+        <span>
+          <slot></slot>
+        </span>
+      </template>
+    </paper-button>
+  </template>
+  <script>
+    /**
+     * `boo-loading-button`
+     * a loading button
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class BooLoadingButton extends Polymer.Element {
+
+      static get is() { return 'boo-loading-button'; }
+
+      static get properties() {
+        return {
+          raised: {
+            type: Boolean
+          },
+          loading: {
+            type: Boolean,
+            notify: true,
+            value: false
+          }
+        };
+      }
+
+      constructor() {
+        super();
+        this.addEventListener('click', () => {
+          this.loading = true;
+        });
+      }
+    }
+
+    window.customElements.define(BooLoadingButton.is, BooLoadingButton);
+  </script>
+</dom-module>
